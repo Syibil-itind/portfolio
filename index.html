@@ -965,8 +965,8 @@
             </div>
 
             <div class="portrait-frame">
-              <img id="portrait-img" src="IMG_2471.webp" alt="Potret Sybil Auzi" width="400" height="500" fetchpriority="high" style="display:none">
-              <div id="portrait-placeholder" class="portrait-empty">
+              <img id="portrait-img" src="./IMG_2471.webp" alt="Potret Sybil Auzi" width="400" height="500" fetchpriority="high" onerror="this.style.display='none'; const p=document.getElementById('portrait-placeholder'); if(p) p.style.display='flex';">
+              <div id="portrait-placeholder" class="portrait-empty" style="display:none">
                 <div class="initials-badge" aria-hidden="true">SA</div>
                 <p style="margin:0;font-weight:800;font-size:1.05rem;color:var(--milk)">Sybil Auzi</p>
                 <p style="margin:0.3rem 0 0;font-size:0.82rem;color:var(--milk-muted)">
@@ -1498,24 +1498,18 @@
    * Taruh file fotomu dengan nama 'profile.jpg' satu folder dengan index.html
    * ----------------------------------------------------------------- */
   const KONTAK = {
-    fotoUrl: 'IMG_2471.webp',
+    fotoUrl: './IMG_2471.webp',
     email: 'anmarjo1311@gmail.com',
     github: 'https://github.com/syibil-itind',
     linkedin: 'https://www.linkedin.com/in/sybil-auzi-1477282a9'
   };
 
-  /* Muat foto profil secara otomatis jika file profile.jpg tersedia di server/Vercel */
+  /* Muat foto profil */
   const portraitImg = document.getElementById('portrait-img');
   const portraitPlaceholder = document.getElementById('portrait-placeholder');
 
-  if (KONTAK.fotoUrl) {
-    const probe = new Image();
-    probe.onload = () => {
-      portraitImg.src = KONTAK.fotoUrl;
-      portraitImg.style.display = 'block';
-      portraitPlaceholder.style.display = 'none';
-    };
-    probe.src = KONTAK.fotoUrl;
+  if (KONTAK.fotoUrl && portraitImg) {
+    portraitImg.src = KONTAK.fotoUrl;
   }
 
   /* Render Tombol Kontak */
